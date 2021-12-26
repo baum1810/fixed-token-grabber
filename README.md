@@ -22,6 +22,7 @@ a fixed version of the batch token grabber (nearly undetected just 9 detections 
 - ip lookup api
 - passwords
 - wify passwords
-- 
+- try to make it undetectable
+- spreading
 
 ## i dont take any responsibility for damage done with the programm it's for educational purposes only
