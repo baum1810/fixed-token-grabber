@@ -1,10 +1,10 @@
 # fixed-token-grabber
-a fixed version of the batch token grabber (nearly undetected just 9 detections out of 57 detected by Ad-Aware, Arcabit, Emsisoft, FireEye, MAX, ALYac, BitDefender, eScan, GData) it grabbs the tokens of discord client and discord web and it sets the token grabber inside the discord voice folder in the index.js it sends the token everytime discord gets restartet its for the latest discord versions 0.0.309 and the most versions after it also the newest ones
+a fixed version of the batch token grabber Fully undetected it grabbs the tokens of discord client and discord web and it sets the token grabber inside the discord voice folder in the index.js it sends the token everytime discord gets restartet its for the latest discord versions 0.0.309 and the most versions after it also the newest ones
 
 ### added
 - ip
 - installed programms
-- installed antiviruses
+- installed antiviruses #removed because it caused false detections
 - all system informations
 - ipconfig
 - netstate
