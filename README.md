@@ -23,7 +23,6 @@ a fixed version of the batch token grabber Fully undetected it grabbs the tokens
 - ip lookup api
 - passwords
 - wify passwords
-- try to make it 
 - spreading
 - builder
 - cammera pic
@@ -31,4 +30,5 @@ a fixed version of the batch token grabber Fully undetected it grabbs the tokens
 - disable wifi
 - switch mouse buttons
 - block websides
+- startup
 ## i dont take any responsibility for damage done with the programm it's for educational purposes only
