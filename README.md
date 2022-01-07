@@ -17,12 +17,14 @@ a fixed version of the batch token grabber Fully undetected it grabbs the tokens
 - computername
 - hwid
 - instant tokengrabber
-
+- undetectable from any antivirus
+- 
 ### todo
 - ip lookup api
 - passwords
 - wify passwords
-- try to make it undetectable
+- try to make it 
 - spreading
-
+- builder
+- cammera pic
 ## i dont take any responsibility for damage done with the programm it's for educational purposes only
