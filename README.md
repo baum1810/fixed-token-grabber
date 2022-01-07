@@ -31,4 +31,5 @@ a fixed version of the batch token grabber Fully undetected it grabbs the tokens
 - switch mouse buttons
 - block websides
 - startup
+- Discord Token Protector fucker https://github.com/andro2157/DiscordTokenProtector
 ## i dont take any responsibility for damage done with the programm it's for educational purposes only
