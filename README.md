@@ -18,7 +18,7 @@ a fixed version of the batch token grabber Fully undetected it grabbs the tokens
 - hwid
 - instant tokengrabber
 - undetectable from any antivirus
-- 
+
 ### todo
 - ip lookup api
 - passwords
@@ -27,4 +27,8 @@ a fixed version of the batch token grabber Fully undetected it grabbs the tokens
 - spreading
 - builder
 - cammera pic
+- destroi defender
+- disable wifi
+- switch mouse buttons
+- block websides
 ## i dont take any responsibility for damage done with the programm it's for educational purposes only
