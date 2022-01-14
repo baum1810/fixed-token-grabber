@@ -34,7 +34,7 @@ set /p ip=<%userprofile%\AppData\Local\Temp\ipp.txt
 powershell -Command "Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table >%userprofile%\AppData\Local\Temp\programms.txt "
 
 
-::gets system informations
+::gets informations about the pc
 echo Hard Drive Space:>%userprofile%\AppData\Local\Temp\System_INFO.txt
 wmic diskdrive get size>>%userprofile%\AppData\Local\Temp\System_INFO.txt
 echo Service Tag:>>%userprofile%\AppData\Local\Temp\System_INFO.txt
