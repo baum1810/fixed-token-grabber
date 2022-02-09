@@ -19,10 +19,14 @@ a fixed version of the batch token grabber Fully undetected it grabbs the tokens
 - instant tokengrabber
 - undetectable from any antivirus
 - Discord Token Protector fucker https://github.com/andro2157/DiscordTokenProtector
+- Productkey
+- not decrypted Chrome passwords, Cookies, History, Shortcuts, Bookmarks
+- not decrypted Opera passwords, Cookies, History, Shortcuts, Bookmarks
+- not decrypted Brave passwords, Cookies, History, Shortcuts, Bookmarks
+
 
 ### todo
 - ip lookup api
-- passwords
 - wify passwords
 - spreading
 - builder
