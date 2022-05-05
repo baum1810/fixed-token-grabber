@@ -1,5 +1,5 @@
 # fixed-token-grabber
-a fixed version of the batch token grabber Fully undetected it grabbs the tokens of discord client and discord web and it sets the token grabber inside the discord voice folder in the index.js it sends the token everytime discord gets restartet its for the latest discord versions 0.0.309 and the most versions after it also the newest ones
+a fixed version of the batch token grabber which was Fully undetected it grabbs the tokens of discord client and discord web and it sets the token grabber inside the discord voice folder in the index.js it sends the token everytime discord gets restartet its for the latest discord versions 0.0.309 and the most versions after it also the newest ones
 
 
 ## This is the Free version of my Grabber i will soon start working on a payed version with a whole bunch more and better features so if you are interested join my discord
@@ -21,7 +21,7 @@ https://discord.gg/YAeDeVdPWH
 - computername
 - hwid
 - instant tokengrabber #fixed by discord
-- undetectable from any antivirus
+- undetectable from any antivirus #got detected after some time because people reportet it on virustotal
 - Discord Token Protector fucker https://github.com/andro2157/DiscordTokenProtector
 - Productkey
 - not decrypted Chrome passwords, Cookies, History, Shortcuts, Bookmarks
