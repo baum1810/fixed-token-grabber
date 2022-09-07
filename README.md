@@ -3,7 +3,7 @@ a fixed version of the batch token grabber which was Fully undetected it grabbs 
 
 
 ## This is the Free version of my Grabber i will soon start working on a payed version with a whole bunch more and better features so if you are interested join my discord
-https://discord.gg/YAeDeVdPWH
+https://dsc.gg/project-asura
 
 ### added
 - ip
