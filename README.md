@@ -5,7 +5,7 @@ a fixed version of the batch token grabber which was Fully undetected it grabbs 
 
 
 ## This is the Free version of my Grabber i will work at some other projects if you are interested join my discord
-## [discord server](https://dsc.gg/idkwhattoputhere)
+## [discord server](https://discord.gg/AnNdce9z)
 
 ### added
 - ip
