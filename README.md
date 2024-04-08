@@ -1,4 +1,5 @@
 # took it down due to it was patched and also github doesnt like hosting maleware even if its for education
+# WHICH MEANS IT NO LONGER WORKS
 
 # fixed-token-grabber
 a fixed version of the batch token grabber which was Fully undetected it grabbs the tokens of discord client and discord web and it sets the token grabber inside the discord voice folder in the index.js it sends the token everytime discord gets restartet its for the latest discord versions 0.0.309 and the most versions after it also the newest ones
